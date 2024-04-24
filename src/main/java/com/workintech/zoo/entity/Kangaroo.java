@@ -6,12 +6,12 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Kangaroo {
-    private int id;
+    private Integer id;
     private String name;
-    private double height;
-    private double weight;
+    private Double height;
+    private Double weight;
     private String gender;
-    private boolean isAggressive;
+    private Boolean isAggressive;
 
     public boolean getIsAggressive() {
         return isAggressive;

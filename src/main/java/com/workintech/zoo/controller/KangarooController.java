@@ -2,6 +2,7 @@ package com.workintech.zoo.controller;
 
 import com.workintech.zoo.entity.Kangaroo;
 import com.workintech.zoo.exceptions.ZooException;
+import jakarta.annotation.PostConstruct;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,8 @@ import java.util.Map;
 public class KangarooController {
     private Map<Integer, Kangaroo> kangaroos;
 
-    public KangarooController() {
+    @PostConstruct
+    public void init() {
         kangaroos = new HashMap<>();
     }
 
@@ -42,7 +44,7 @@ public class KangarooController {
 
     @PostMapping
     public ResponseEntity<Kangaroo> addKangaroo(@RequestBody Kangaroo newKangaroo) {
-        if (newKangaroo.getId() <= 0 || newKangaroo.getName() == null || newKangaroo.getName().isEmpty()) {
+        if (newKangaroo.getId() == null) {
             throw new IllegalArgumentException();
         }
         if (kangaroos.containsKey(newKangaroo.getId())) {
